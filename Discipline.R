@@ -8,16 +8,16 @@ library(ggplot2)
 library(forcats)
 library(colorspace)
 
-Report_Card_Discipline_for_2014_15_to_2021_22_School_Year <- 
-  read_csv("Report_Card_Discipline_for_2014-15_to_2021-22_School_Year.csv")
-Report_Card_Discipline_for_2022_23 <- read_csv("Report_Card_Discipline_for_2022-23.csv")
+#Report_Card_Discipline_for_2014_15_to_2021_22_School_Year <- 
+#  read_csv("Report_Card_Discipline_for_2014-15_to_2021-22_School_Year.csv")
+#Report_Card_Discipline_for_2022_23 <- read_csv("Report_Card_Discipline_for_2022-23.csv")
 
-Discipline = rbind(Report_Card_Discipline_for_2014_15_to_2021_22_School_Year,Report_Card_Discipline_for_2022_23) %>%
-  filter(DistrictName == "Seattle School District No. 1")
+#Discipline = rbind(Report_Card_Discipline_for_2014_15_to_2021_22_School_Year,Report_Card_Discipline_for_2022_23) %>%
+#  filter(DistrictName == "Seattle School District No. 1")
 
-silly <- Discipline %>% group_by(DistrictName) %>% summarize(mycount = n())
-silly <- Discipline %>% group_by(Rate) %>% summarize(mycount = n())
-rm(Report_Card_Discipline_for_2014_15_to_2021_22_School_Year,Report_Card_Discipline_for_2022_23 )
+#silly <- Discipline %>% group_by(DistrictName) %>% summarize(mycount = n())
+#silly <- Discipline %>% group_by(Rate) %>% summarize(mycount = n())
+#rm(Report_Card_Discipline_for_2014_15_to_2021_22_School_Year,Report_Card_Discipline_for_2022_23 )
 
 
 table(Discipline$`Student Group`)
@@ -33,7 +33,7 @@ MyData <- Discipline %>% select(SchoolName, `Student Group`,GradeLevel, SchoolYr
            GradeLevel == "All")
 
 TempSchool = "Bailey Gatzert Elementary School"
-TempCat = "White"
+TempCat = "Female"
 
 SchoolData <-  MyData %>% filter(SchoolName == TempSchool) %>% select(`Student Group`,SchoolYr,Rate)
 SchoolData_A <- SchoolData %>% filter(`Student Group` != "All Students")
@@ -87,10 +87,12 @@ h2 <- SchoolHeatData %>% ggplot(aes(x=factor(1),y =  fct_rev(`Student Group`),
 grid.arrange(h1,h2,ncol=2)
 
 Plot1Data <- MyData %>% filter(SchoolName == TempSchool & `Student Group` %in% c("All Students",TempCat))
-RateTrend <- Plot1Data %>% ggplot(aes(x=SchoolYr,y=Rate,color=`Student Group`)) + geom_line() + geom_point() +
+RateTrend <- Plot1Data %>% ggplot(aes(x=SchoolYr,y=Rate,color=`Student Group`)) + 
+  geom_line() + geom_point() +
   scale_x_continuous(name="School Year") +
   scale_y_continuous(name="Percent of students excluded from classroom\n in response to a behavioral violation",
                      labels=scales::percent) + 
+  scale_color_manual(values = c("grey50","blue")) +
   theme_bw()
 
 Plot2Data <- Plot1Data %>% select(`Student Group`,SchoolYr,Rate) %>% dcast(.,SchoolYr ~ `Student Group` ) %>%
