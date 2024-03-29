@@ -1,12 +1,12 @@
 library(shiny)
 library(shinyWidgets)
-library(Cairo)
 library(readr)
 library(dplyr)
 library(stringr)
 library(reshape2)
 library(ggplot2)
 library(forcats)
+library(gridExtra)
 
 load('Discipline.RData')
 
@@ -247,7 +247,7 @@ ui <- fluidPage(
       br(),
       br(),
       HTML("Please direct questions, comments, and suggestions to <a href='mailto:acooper@alumni.washington.edu'>Andy Cooper</a>"),
-      HTML("Data and code can be found at <a href='https://github.com/andrewbcooper/SPS_Analysis'>Andy's GitHub Page</a>.")
+      HTML("Data and code can be found at <a href='https://github.com/andrewbcooper/SPS_Discipline'>Andy's GitHub Page</a>.")
       
       
     
