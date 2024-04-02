@@ -193,11 +193,11 @@ server <- function(input, output,session) {
 # Define UI for application
 ui <- fluidPage(
   
-  titlePanel('SPS Disciplinary Rate Exploration Tool'),
+  titlePanel('Seattle Public School Disciplinary Rate Exploration Tool'),
   sidebarLayout(
     sidebarPanel(
       
-      h6("This tool examines the disciplinary rate for multiple student groups for the 2014/5 - 2022/3 school years. OSPI defines the disciplinary rate as the number of student in that group who were excluded from the classroom divided by the number of students in that group during the school year.  As such, a %5 disicplinary rate means that 5% of the students in that group were excluded from the classroom at least once during that school year.
+      h6("This tool examines the disciplinary rate for multiple student groups for the 2014/5 - 2022/3 school years. The Washington Office of Superintendent of Public Instruction (OSPI)) defines the disciplinary rate as the number of student in that group who were excluded from the classroom divided by the number of students in that group during the school year.  As such, a 5% disicplinary rate means that 5% of the students in that group were excluded from the classroom at least once during that school year.
          Due to privacy concerns, most of the numbers provided by OSPI are set to the upper range of the estimate, with the actual estimate possibly being lower.  Disciplinary rates for student groups with fewer than 10 students are not reported (and appear blank in the figures) "),
 
       h5("District Overview Tab:",style="color:darkgreen"),
